@@ -1,5 +1,4 @@
-aiohttp
-pyTelegramBotAPI
+python-telegram-bot
 python-dotenv
-pyChatGPT
-PyVirtualDisplay
+revchatgpt
+setuptools
