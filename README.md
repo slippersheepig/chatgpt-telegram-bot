@@ -1,4 +1,4 @@
-A branch for bot to interact with chatgpt official api ( comes with [n3d1117](https://github.com/n3d1117/chatgpt-telegram-bot) and [acheong08](https://github.com/acheong08/ChatGPT) )
+A branch for bot to interact with chatgpt official api ( comes with [n3d1117](https://github.com/n3d1117/chatgpt-telegram-bot) and [acheong08](https://github.com/acheong08/ChatGPT) ), with showing typing status support
 ### Configuration
 Customize the configuration by create a file named `.env`, then editing the settings as desired:
 ```bash
@@ -20,7 +20,7 @@ services:
     image: sheepgreen/chatgpt #for arm, use chatgpt:arm
     container_name: chatgpt
     volumes:
-      - ./.env:/chatgpt/.env
+      - ./.env:/home/userapp/.env
     restart: always
 ```
 Then run `docker-compose up -d`,that's all!
