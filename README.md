@@ -17,10 +17,10 @@ Create a file named `docker-compose.yml`(same directory as `.env`)
 version: '3'
 services:
   chatgpt:
-    image: sheepgreen/chatgpt #for arm, use chatgpt:arm
+    image: sheepgreen/chatgpt:api #for arm, use chatgpt:apiarm
     container_name: chatgpt
     volumes:
-      - ./.env:/home/userapp/.env
+      - ./.env:/home/appuser/.env
     restart: always
 ```
 Then run `docker-compose up -d`,that's all!
