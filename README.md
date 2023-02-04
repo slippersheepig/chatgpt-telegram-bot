@@ -1,3 +1,5 @@
+> **Warning**
+> Current deprecated due to Cloudflare protections
 ### Configuration
 Customize the configuration by create a file named `.env`, then editing the settings as desired:
 ```bash
