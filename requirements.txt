@@ -1,4 +1,4 @@
 python-telegram-bot
 python-dotenv
-revchatgpt==1.1.2
+revchatgpt
 setuptools
