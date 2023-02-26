@@ -3,7 +3,7 @@ import logging
 
 import telegram.constants as constants
 from httpx import HTTPError
-from revChatGPT.Official import AsyncChatbot as ChatGPT3Bot
+from revChatGPT.V1 import AsyncChatbot as ChatGPT3Bot
 from telegram import Update, Message
 from telegram.error import RetryAfter, BadRequest
 from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler, MessageHandler, filters
@@ -55,7 +55,7 @@ class ChatGPT3TelegramBot:
         await context.bot.send_message(
             chat_id=update.effective_chat.id,
             reply_to_message_id=update.message.message_id,
-            text=response["choices"][0]["text"],
+            text=response,
             parse_mode=constants.ParseMode.MARKDOWN
         )
 
@@ -64,12 +64,13 @@ class ChatGPT3TelegramBot:
         Gets the response from the ChatGPT APIs.
         """
         try:
-            response = await self.gpt3_bot.ask(message)
+            response = ""
+            async for data in self.gpt3_bot.ask(message):
+                response = data["message"]
             return response
         except Exception as e:
             logging.info(f'Error while getting the response: {str(e)}')
-            response = await 'Something went wrong, please try again later. Reason: {str(e)}'
-            return response
+            return {"message": "I'm having some trouble talking to you, please try again later."}
 
     async def send_disallowed_message(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """
