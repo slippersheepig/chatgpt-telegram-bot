@@ -20,7 +20,7 @@ Create a file named `docker-compose.yml`(same directory as `.env`)
 ```bash
 services:
   chatgpt:
-    image: sheepgreen/chatgpt:proxy #for arm, use chatgpt:proxyarmarm
+    image: sheepgreen/chatgpt:proxy #for arm, use chatgpt:proxyarm
     container_name: chatgpt
 #    environment:
 #      - CHATGPT_BASE_URL=YOUR_PROXY_ENDPOINT(by default uses the author's, may have problems sometimes)
