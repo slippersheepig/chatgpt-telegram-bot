@@ -8,6 +8,6 @@ WORKDIR /home/appuser/
 
 ENV PATH="/home/appuser/.local/bin:$PATH"
 COPY . .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --break-system-packages --no-cache-dir -r requirements.txt
 
 CMD [ "python3", "main.py" ]
