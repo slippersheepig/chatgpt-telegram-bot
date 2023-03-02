@@ -1,7 +1,6 @@
-> **Warning**
-> Current Deprecated
-
-A branch for bot to interact with chatgpt official api ( comes with [n3d1117](https://github.com/n3d1117/chatgpt-telegram-bot) and [acheong08](https://github.com/acheong08/ChatGPT) ), with showing typing status support
+### Update
+2023.3.2 Use official ChatGPT API
+### A branch for bot to interact with chatgpt official api ( comes with [acheong08](https://github.com/acheong08/ChatGPT) )
 ### Configuration
 Customize the configuration by create a file named `.env`, then editing the settings as desired:
 ```bash
@@ -13,17 +12,9 @@ TELEGRAM_BOT_TOKEN="<YOUR_TELEGRAM_BOT_TOKEN>"
 2. Go to https://platform.openai.com/account/api-keys
 3. Copy API key
 * `TELEGRAM_BOT_TOKEN`: Your Telegram bot's token, obtained using [BotFather](http://t.me/botfather) (see [tutorial](https://core.telegram.org/bots/tutorial#obtain-your-bot-token))
-
-Additional optional (but recommended) configuration values:
-```bash
-ALLOWED_TELEGRAM_USER_IDS="<USER_ID_1>,<USER_ID_2>,..." # Defaults to "*"
-```
-* `ALLOWED_TELEGRAM_USER_IDS`: A comma-separated list of Telegram user IDs that are allowed to interact with the bot (use [getidsbot](https://t.me/getidsbot) to find your user ID). **Important**: by default, *everyone* is allowed (`*`)
-
 ### Usage
 Create a file named `docker-compose.yml`(same directory as `.env`)
 ```bash
-version: '3'
 services:
   chatgpt:
     image: sheepgreen/chatgpt:api #for arm, use chatgpt:apiarm
