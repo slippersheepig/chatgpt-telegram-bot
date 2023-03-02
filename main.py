@@ -1,43 +1,35 @@
-import logging
 import os
+import asyncio
+from pathlib import Path
+from dotenv import dotenv_values
+from telebot.async_telebot import AsyncTeleBot
+from revChatGPT.V3 import Chatbot
 
-from dotenv import load_dotenv
-from revChatGPT.Official import AsyncChatbot as ChatGPT3Bot
+# get config
+parent_dir = Path(__file__).resolve().parent
+config = dotenv_values(f"{parent_dir}/.env")
 
-from telegram_bot import ChatGPT3TelegramBot
+# init telegram bot
+BOT_TOKEN = config["TELEGRAM_BOT_TOKEN"]
+bot = AsyncTeleBot(BOT_TOKEN, parse_mode="MARKDOWN")
 
+# init chatbot
+chatbot = Chatbot(api_key=config["OPENAI_API_KEY"])
+print("initial bot...")
 
-def main():
-    # Read .env file
-    load_dotenv()
+# define a message handler to send a message when the command /start is issued
+@bot.message_handler(commands=["start", "hello"])
+async def send_welcome(message):
+    await bot.reply_to(message, "This bot uses the official ChatGPT API")
 
-    # Setup logging
-    logging.basicConfig(
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        level=logging.INFO
-    )
-
-    # Check if the required environment variables are set
-    required_values = ['TELEGRAM_BOT_TOKEN', 'OPENAI_API_KEY']
-    missing_values = [value for value in required_values if os.environ.get(value) is None]
-    if len(missing_values) > 0:
-        logging.error(f'The following environment values are missing in your .env: {", ".join(missing_values)}')
-        exit(1)
-
-    # Setup configuration
-    chatgpt_config = {
-        'api_key': os.environ['OPENAI_API_KEY']
-    }
-    telegram_config = {
-        'token': os.environ['TELEGRAM_BOT_TOKEN'],
-        'allowed_user_ids': os.environ.get('ALLOWED_TELEGRAM_USER_IDS', '*')
-    }
-
-    # Setup and run ChatGPT and Telegram bot
-    gpt3_bot = ChatGPT3Bot(api_key=chatgpt_config['api_key'])
-    telegram_bot = ChatGPT3TelegramBot(config=telegram_config, gpt3_bot=gpt3_bot)
-    telegram_bot.run()
+@bot.message_handler(func=lambda m: True)
+async def send_gpt(message):
+    print("get response...")
+#   await bot.send_chat_action(message.chat.id, 'typing')
+#   await bot.send_message(message.chat.id, "思考中，请稍后")
+    response = chatbot.ask(message.text)
+    await bot.reply_to(message, response)
 
 
-if __name__ == '__main__':
-    main()
+# run the bot
+asyncio.run(bot.polling())
