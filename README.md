@@ -1,3 +1,4 @@
+> [n3d1117](https://github.com/n3d1117/chatgpt-telegram-bot) is back! Use this.
 ### Update
 2023.3.2 Use official ChatGPT API
 ### A branch for bot to interact with chatgpt official api ( comes with [acheong08](https://github.com/acheong08/ChatGPT) )
