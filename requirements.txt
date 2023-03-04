@@ -1,3 +1,4 @@
+revchatgpt
 aiohttp
 pyTelegramBotAPI
 python-dotenv
