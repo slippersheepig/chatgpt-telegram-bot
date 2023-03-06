@@ -18,7 +18,7 @@ Create a file named `docker-compose.yml`(same directory as `.env`)
 ```bash
 services:
   chatgpt:
-    image: sheepgreen/chatgpt:api #for arm, use chatgpt:apiarm
+    image: sheepgreen/chatgpt #for arm, use chatgpt:arm
     container_name: chatgpt
     volumes:
       - ./.env:/home/appuser/.env
