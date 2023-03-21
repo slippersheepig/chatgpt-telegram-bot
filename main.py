@@ -7,14 +7,20 @@ from revChatGPT.V3 import Chatbot
 
 # get config
 parent_dir = Path(__file__).resolve().parent
-config = dotenv_values(f"{parent_dir}/.env")
+
+dotenv_values = dotenv_values(f"{parent_dir}/.env")
+default_envs = {"OPENAI_MODEL": "gpt-3.5-turbo"}
+config = {
+    **default_envs,
+    **dotenv_values
+}
 
 # init telegram bot
 BOT_TOKEN = config["TELEGRAM_BOT_TOKEN"]
 bot = AsyncTeleBot(BOT_TOKEN, parse_mode="MARKDOWN")
 
 # init chatbot
-chatbot = Chatbot(api_key=config["OPENAI_API_KEY"])
+chatbot = Chatbot(api_key=config["OPENAI_API_KEY"], engine=config["OPENAI_MODEL"])
 print("initial bot...")
 
 # define a message handler to send a message when the command /start is issued
