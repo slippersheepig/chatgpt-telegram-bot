@@ -13,6 +13,11 @@ TELEGRAM_BOT_TOKEN="<YOUR_TELEGRAM_BOT_TOKEN>"
 2. Go to https://platform.openai.com/account/api-keys
 3. Copy API key
 * `TELEGRAM_BOT_TOKEN`: Your Telegram bot's token, obtained using [BotFather](http://t.me/botfather) (see [tutorial](https://core.telegram.org/bots/tutorial#obtain-your-bot-token))
+
+Additional optional configuration values:
+```bash
+OPENAI_MODEL="<ANY_MODEL_AVAILABLE_FROM_OPENAI>" # Defaults to "gpt-3.5-turbo"
+```
 ### Usage
 Create a file named `docker-compose.yml`(same directory as `.env`)
 ```bash
