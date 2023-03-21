@@ -20,7 +20,7 @@ BOT_TOKEN = config["TELEGRAM_BOT_TOKEN"]
 bot = AsyncTeleBot(BOT_TOKEN, parse_mode="MARKDOWN")
 
 # init chatbot
-chatbot = Chatbot(api_key=config["OPENAI_API_KEY"], model=config["OPENAI_MODEL"])
+chatbot = Chatbot(api_key=config["OPENAI_API_KEY"], engine=config["OPENAI_MODEL"])
 print("initial bot...")
 
 # define a message handler to send a message when the command /start is issued
