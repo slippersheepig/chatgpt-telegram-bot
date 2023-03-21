@@ -31,7 +31,7 @@ async def send_welcome(message):
 @bot.message_handler(func=lambda m: True)
 async def send_gpt(message):
     print("get response...")
-#   await bot.send_chat_action(message.chat.id, 'typing')
+    await bot.send_chat_action(message.chat.id, 'typing')
 #   await bot.send_message(message.chat.id, "思考中，请稍后")
     response = chatbot.ask(message.text)
     await bot.reply_to(message, response)
