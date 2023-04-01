@@ -1,9 +1,9 @@
-name: ci-proxy
+name: ci-edge
 
 on:
   push:
     branches:
-      - "proxy"
+      - "edge"
 
 jobs:
   docker:
@@ -31,4 +31,4 @@ jobs:
           context: .
           platforms: linux/amd64, linux/arm64
           push: true
-          tags: sheepgreen/chatgpt:proxy
+          tags: sheepgreen/chatgpt:edge
