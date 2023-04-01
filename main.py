@@ -31,9 +31,6 @@ def main():
         'allowed_user_ids': os.environ.get('ALLOWED_TELEGRAM_USER_IDS', '*')
     }
 
-    if os.environ.get('PROXY', None) is not None:
-        chatgpt_config.update({'proxy': os.environ.get('PROXY')})
-
     # Setup and run ChatGPT and Telegram bot
     gpt4_bot = ChatGPT4Bot(cookies=cookies)
 
