@@ -187,8 +187,15 @@ class ChatGPT3TelegramBot:
                 response = data
             return response
         except Exception as e:
-            logging.info(f'Error while getting the response: {str(e)}')
-            return {str(e)}
+            error_text = f'Error while getting the response: {str(e)}'
+            logging.info(error_text)
+            await context.bot.send_message(
+                chat_id=update.effective_chat.id,
+                reply_to_message_id=update.message.message_id,
+                text=error_text,
+                parse_mode=constants.ParseMode.MARKDOWN
+            )
+            return
 
     async def send_disallowed_message(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """
