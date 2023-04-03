@@ -17,7 +17,7 @@ config = {
 
 # init telegram bot
 BOT_TOKEN = config["TELEGRAM_BOT_TOKEN"]
-bot = AsyncTeleBot(BOT_TOKEN, parse_mode="MARKDOWN")
+bot = AsyncTeleBot(BOT_TOKEN, parse_mode="HTML")
 
 # init chatbot
 chatbot = Chatbot(api_key=config["OPENAI_API_KEY"], engine=config["OPENAI_MODEL"])
