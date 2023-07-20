@@ -1,4 +1,4 @@
-FROM python:alpine
+FROM python:slim
 
 WORKDIR /home/appuser/
 COPY . .
